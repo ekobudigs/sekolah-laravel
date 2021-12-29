@@ -1,7 +1,10 @@
 <?php
 
-use App\Http\Controllers\MenuController;
+use App\Models\Siswa;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\SiswaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +24,7 @@ Route::get('/', function () {
 Route::get('/beranda', [MenuController::class, 'home']);
 Route::get('/info-kegiatan', [MenuController::class, 'info_kegiatan']);
 Route::get('/data-siswa', [MenuController::class, 'data_siswa']);
+Route::resource('siswa', SiswaController::class);
 
 Auth::routes();
 
