@@ -2,7 +2,10 @@
 @section('content')
 <div class="container d-flex justify-content-center mt-5">
     <div class="card">
+
+        @can('isAdmin')
         <a href="{{route ('siswa.index')}}" class="btn btn-info">Kembali</a>
+        @endcan
         <div class="top-container"> <img src="https://i.pravatar.cc/300" class="img-fluid profile-image" width="70">
             <div style="margin-left: 12px">
                 <h5 class="name">{{ $siswa->nama }}</h5>

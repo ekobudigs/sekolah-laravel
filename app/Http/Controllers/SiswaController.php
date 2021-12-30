@@ -94,6 +94,7 @@ class SiswaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Siswa::find($id)->delete();
+        return back();
     }
 }

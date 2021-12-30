@@ -24,7 +24,8 @@ Route::get('/', function () {
 Route::get('/beranda', [MenuController::class, 'home']);
 Route::get('/info-kegiatan', [MenuController::class, 'info_kegiatan']);
 Route::get('/data-siswa', [MenuController::class, 'data_siswa']);
-Route::resource('siswa', SiswaController::class);
+Route::resource('siswa', SiswaController::class)->middleware('can:isAdmin');
+Route::resource('siswa', SiswaController::class)->only('show')->middleware('can:isAdminSiswa');
 
 Auth::routes();
 
