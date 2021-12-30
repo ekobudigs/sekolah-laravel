@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Siswa;
 use Illuminate\Http\Request;
+use App\Http\Requests\SiswaRequest;
+
 
 class SiswaController extends Controller
 {
@@ -34,7 +36,7 @@ class SiswaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SiswaRequest $request)
     {
         Siswa::create(
             $request->all()
@@ -60,9 +62,9 @@ class SiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Siswa $siswa)
     {
-        //
+        return view('edit_siswa', ['siswa' => $siswa]);
     }
 
     /**
@@ -72,9 +74,16 @@ class SiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SiswaRequest $request, $id)
     {
-        //
+        Siswa::find($id)->update([
+            'nama' => $request->nama,
+            'nis' => $request->nis,
+            'tgl_lahir' => $request->tgl_lahir
+    
+        ]);
+
+        return redirect('siswa')->with('status', 'Siswa Telah di edit');
     }
 
     /**
